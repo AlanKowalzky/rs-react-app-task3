@@ -1,0 +1,13 @@
+body.dark {
+    background-color: var(--dark-bg-color);
+    color: var(--dark-text-color);
+}
+
+body.dark button {
+    background-color: var(--dark-primary-color);
+    color: var(--dark-text-color);
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
