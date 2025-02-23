@@ -6,7 +6,12 @@ import { ThemeContext } from '../../context/ThemeContext';
 import './Flyout.css';
 
 const Flyout: React.FC = () => {
-  const { theme } = useContext(ThemeContext);
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error('Flyout must be used within a ThemeProvider');
+  }
+  const { theme } = context;
+  
   const selectedItems = useSelector((state: RootState) => state.selectedItems.selectedItems);
   const dispatch = useDispatch();
 
@@ -18,6 +23,7 @@ const Flyout: React.FC = () => {
     link.href = url;
     link.download = `${selectedItems.length}_pokemons.csv`;
     link.click();
+    URL.revokeObjectURL(url); // Clean up the URL object after use
   };
 
   if (selectedItems.length === 0) return null;

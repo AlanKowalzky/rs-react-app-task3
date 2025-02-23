@@ -1,11 +1,12 @@
 // src/components/Dashboard/Dashboard.tsx
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, ChangeEvent, KeyboardEvent } from 'react'; // Dodane ChangeEvent i KeyboardEvent
 import { useGetPokemonsQuery, useGetPokemonDetailsQuery } from '../../services/apiSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem, removeItem } from '../../features/selectedItems/selectedItemsSlice';
 import { RootState } from '../../store/store';
 import type { Pokemon, PokemonDetails } from '../../types/pokemon';
 import './Dashboard.css';
+
 const Dashboard: React.FC = () => {
   const [page, setPage] = useState(0);
   const [search, setSearch] = useState('');
@@ -38,7 +39,7 @@ const Dashboard: React.FC = () => {
   const handleCheckboxChange = (e: React.MouseEvent, name: string) => {
     e.preventDefault();
     e.stopPropagation();
-    setSelectedPokemon(null);  // Close details panel when toggling checkbox
+    setSelectedPokemon(null); // Close details panel when toggling checkbox
     if (selectedItems.includes(name)) {
       dispatch(removeItem(name));
     } else {
@@ -53,7 +54,23 @@ const Dashboard: React.FC = () => {
   const handleCloseDetails = () => {
     setSelectedPokemon(null);
   };
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearch(value.length >= 3 ? value : '');
+  };
 
+  const handleSearch = () => {
+    if (search.length >= 3) {
+      setSearch(search);
+    }
+  };
+
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && search.length >= 3) {
+      e.preventDefault();
+      handleSearch();
+    }
+  };
   return (
     <div className="dashboard-container" style={{ position: 'relative' }}>
       <div className="pokemon-list">
@@ -63,24 +80,10 @@ const Dashboard: React.FC = () => {
             type="text"
             placeholder="Search Pokemon (min 3 characters)"
             value={search}
-            onChange={(e) => {
-            const value = e.target.value;
-            setSearch(value.length >= 3 ? value : '');
-          }}
-          onKeyPress={(e) => {
-            if (e.key === 'Enter' && search.length >= 3) {
-              setSearch(e.target.value);
-            }
-          }}
+            onChange={handleSearchChange} // Używamy poprawionej funkcji
+            onKeyPress={handleKeyPress} // Używamy poprawionej funkcji
           />
-          <button 
-            onClick={() => {
-              if (search.length >= 3) {
-                setSearch(search);
-              }
-            }}
-            disabled={search.length < 3}
-          >
+          <button onClick={handleSearch} disabled={search.length < 3}>
             Search
           </button>
         </div>
@@ -96,7 +99,9 @@ const Dashboard: React.FC = () => {
               <input
                 type="checkbox"
                 checked={selectedItems.includes(pokemon.name)}
-                onChange={(e) => handleCheckboxChange(e as unknown as React.MouseEvent, pokemon.name)}
+                onChange={(e) =>
+                  handleCheckboxChange(e as unknown as React.MouseEvent, pokemon.name)
+                }
               />
               {pokemon.name}
             </li>
@@ -108,20 +113,36 @@ const Dashboard: React.FC = () => {
         <button onClick={() => setPage(page + 1)}>Next</button>
       </div>
       {selectedPokemon && pokemonDetails && (
-        <div className="pokemon-details" ref={detailsRef} style={{ position: 'fixed', right: '20px', top: '20px', bottom: '20px', width: '40%', overflowY: 'auto' }}>
+        <div
+          className="pokemon-details"
+          ref={detailsRef}
+          style={{
+            position: 'fixed',
+            right: '20px',
+            top: '20px',
+            bottom: '20px',
+            width: '40%',
+            overflowY: 'auto',
+          }}
+        >
           <button className="close-button" onClick={handleCloseDetails}>
             &times;
           </button>
           <h2>{pokemonDetails.name}</h2>
           <img
-            src={pokemonDetails.sprites.other?.['official-artwork']?.front_default || pokemonDetails.sprites.front_default}
+            src={
+              pokemonDetails.sprites.other?.['official-artwork']?.front_default ||
+              pokemonDetails.sprites.front_default
+            }
             alt={pokemonDetails.name}
             className="pokemon-image"
           />
           <p>Height: {pokemonDetails.height / 10} m</p>
           <p>Weight: {pokemonDetails.weight / 10} kg</p>
           <p>Types: {pokemonDetails.types.map((type) => type.type.name).join(', ')}</p>
-          <p>Abilities: {pokemonDetails.abilities.map((ability) => ability.ability.name).join(', ')}</p>
+          <p>
+            Abilities: {pokemonDetails.abilities.map((ability) => ability.ability.name).join(', ')}
+          </p>
           <p>Base Experience: {pokemonDetails.base_experience}</p>
         </div>
       )}
