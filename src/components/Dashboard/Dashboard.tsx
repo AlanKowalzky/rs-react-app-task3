@@ -6,6 +6,7 @@ import { addItem, removeItem } from '../../features/selectedItems/selectedItemsS
 import { RootState } from '../../store/store';
 import type { Pokemon, PokemonDetails } from '../../types/pokemon';
 import './Dashboard.css';
+import SearchBar from '../SearchBar/SearchBar';
 
 const Dashboard: React.FC = () => {
   const [page, setPage] = useState(0);
@@ -54,15 +55,9 @@ const Dashboard: React.FC = () => {
   const handleCloseDetails = () => {
     setSelectedPokemon(null);
   };
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearch(value.length >= 3 ? value : '');
-  };
 
-  const handleSearch = () => {
-    if (search.length >= 3) {
-      setSearch(search);
-    }
+  const handleSearch = (value: string) => {
+    setSearch(value);
   };
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -76,16 +71,7 @@ const Dashboard: React.FC = () => {
       <div className="pokemon-list">
         <h1>Pokemon Dashboard</h1>
         <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search Pokemon (min 3 characters)"
-            value={search}
-            onChange={handleSearchChange} // Używamy poprawionej funkcji
-            onKeyPress={handleKeyPress} // Używamy poprawionej funkcji
-          />
-          <button onClick={handleSearch} disabled={search.length < 3}>
-            Search
-          </button>
+         <SearchBar onSearch={handleSearch} />
         </div>
         {isLoading && <p>Loading...</p>}
         {isError && <p>Error fetching data</p>}

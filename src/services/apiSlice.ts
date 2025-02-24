@@ -1,11 +1,12 @@
+// src/services/apiSlice.ts
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { PokemonListResponse, PokemonDetails } from '../types/pokemon';
+import type { PokemonListResponse, PokemonDetails } from '../types/pokemon';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
   endpoints: (builder) => ({
-    getPokemons: builder.query<PokemonListResponse, { limit: number; offset: number; search?: string }>({
+    getPokemons: builder.query<PokemonListResponse, { limit: number; offset: number; search: string }>({
       query: ({ limit = 10, offset = 0, search = '' }) => {
         if (search) {
           return `pokemon/${search.toLowerCase()}`;
@@ -19,4 +20,5 @@ export const apiSlice = createApi({
   }),
 });
 
+// Export the generated hooks
 export const { useGetPokemonsQuery, useGetPokemonDetailsQuery } = apiSlice;
