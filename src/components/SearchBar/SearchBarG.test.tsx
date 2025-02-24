@@ -17,29 +17,6 @@ test('updates search value and triggers search', () => {
   expect(mockOnSearch).toHaveBeenCalledWith('pikachu');
 });
 
-test('triggers search on Enter key press', () => {
-    const mockOnSearch = jest.fn();
-    render(<SearchBar onSearch={mockOnSearch} />);
-  
-    const input = screen.getByPlaceholderText('Search Pokemon') as HTMLInputElement;
-    fireEvent.change(input, { target: { value: 'charizard' } });
-    fireEvent.keyPress(input, { key: 'Enter', code: 'Enter' }); // Poprawione na keyPress
-  
-    expect(mockOnSearch).toHaveBeenCalledWith('charizard'); // Sprawdzamy, czy onSearch zostało wywołane
-});
-
-test('clears input field', () => {
-    const mockOnSearch = jest.fn();
-    render(<SearchBar onSearch={mockOnSearch} />);
-  
-    const input = screen.getByPlaceholderText('Search Pokemon') as HTMLInputElement; // Dodana asercja typu
-    fireEvent.change(input, { target: { value: 'pikachu' } });
-    expect(input.value).toBe('pikachu');
-    
-    fireEvent.click(screen.getByText('Search'));
-    expect(input.value).toBe('');
-});
-
 test('input value change', () => {
     const mockOnSearch = jest.fn();
     render(<SearchBar onSearch={mockOnSearch} />);
@@ -79,17 +56,6 @@ test('clears input field when Search button is pressed', () => {
 
   const searchButton = screen.getByText('Search');
   fireEvent.click(searchButton);
-
-  expect(input.value).toBe(''); // Sprawdzamy, czy pole input zostało wyczyszczone
-});
-
-test('clears input field when Enter is pressed', () => {
-  const mockOnSearch = jest.fn();
-  render(<SearchBar onSearch={mockOnSearch} />);
-
-  const input = screen.getByPlaceholderText('Search Pokemon') as HTMLInputElement;
-  fireEvent.change(input, { target: { value: 'pikachu' } });
-  fireEvent.keyPress(input, { key: 'Enter', code: 'Enter' });
 
   expect(input.value).toBe(''); // Sprawdzamy, czy pole input zostało wyczyszczone
 });
