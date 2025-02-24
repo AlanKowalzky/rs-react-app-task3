@@ -1,8 +1,6 @@
 {
   "homepage": "https://AlanKowlzky.github.io/app-state-managment",
-  "name": "apsmd-rs-react-app-task3-pr",
-  "private": true,
-  "version": "0.0.0",
+    "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
