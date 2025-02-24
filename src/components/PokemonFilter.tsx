@@ -1,14 +1,12 @@
-// src/components/PokemonFilter.tsx
+// src/components/PokemonFilter/PokemonFilter.tsx
 import React, { useState, useEffect } from 'react';
-import { useGetPokemonsQuery } from '../services/apiSlice';
 
 interface PokemonFilterProps {
-  search: string;
-  allPokemons: any[];
-  setAllPokemons: (pokemons: any[]) => void;
+    search: string;
+    allPokemons: any[];
+    setAllPokemons: (pokemons: any[]) => void;
     setFilteredPokemons: (pokemons: any[]) => void;
     handlePokemonClick: (name: string) => void;
-    handleCheckboxChange: (e: React.MouseEvent, name: string) => void;
     selectedItems: string[];
     filteredPokemons: any[];
     setPage: (page: number) => void;
@@ -19,30 +17,25 @@ interface PokemonFilterProps {
     displayedPokemons: any[];
     setDisplayedPokemons: (pokemons: any[]) => void;
     isFetching: boolean;
+    handleCheckboxChange: (e: React.MouseEvent, name: string) => void;
+    offset: number;
+    setOffset: (offset: number) => void;
 }
 
-const PokemonFilter: React.FC<PokemonFilterProps> = ({ search, allPokemons, setAllPokemons, handlePokemonClick, handleCheckboxChange, selectedItems, filteredPokemons, setPage, page, hasMore, isLoading, isError, displayedPokemons, setDisplayedPokemons, isFetching }) => {
-    const [offset, setOffset] = useState(0); // Dodany stan offset
-    const { data } = useGetPokemonsQuery({ limit: 10, offset: offset, search: "" });
+const PokemonFilter: React.FC<PokemonFilterProps> = ({ search, allPokemons, handlePokemonClick, selectedItems, filteredPokemons, setPage, page, hasMore, isLoading, isError, displayedPokemons, setDisplayedPokemons, isFetching, setFilteredPokemons, handleCheckboxChange, offset, setOffset }) => {
 
-      useEffect(() => {
-          if (data?.results) {
-              setAllPokemons((prev) => [...prev, ...data.results]);
-              if (data.results.length < 10) {
-                  hasMore = false;
-              }
-          }
-      }, [data]);
+    useEffect(() => {
+      const filtered = allPokemons.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredPokemons(filtered);
+    }, [search, allPokemons]);
 
-      useEffect(() => {
+    useEffect(() => {
         const start = page * 10;
         const end = start + 10;
         setDisplayedPokemons(filteredPokemons.slice(start, end));
-
-          if (end >= filteredPokemons.length && hasMore && !isFetching) {
-              setOffset(offset + 10);
-          }
-      }, [page, filteredPokemons, hasMore]);
+    }, [page, filteredPokemons]);
 
   return (
     <>
@@ -60,7 +53,7 @@ const PokemonFilter: React.FC<PokemonFilterProps> = ({ search, allPokemons, setA
                       checked={selectedItems.includes(pokemon.name)}
                       onChange={(e) => handleCheckboxChange(e as unknown as React.MouseEvent, pokemon.name)}
                   />
-                  {pokemon.name}
+                 {pokemon.name}
               </li>
           ))}
       </ul>
