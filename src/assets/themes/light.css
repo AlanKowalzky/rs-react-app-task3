@@ -1,0 +1,13 @@
+body.light {
+    background-color: var(--light-bg-color);
+    color: var(--light-text-color);
+}
+
+body.light button {
+    background-color: var(--light-primary-color);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}

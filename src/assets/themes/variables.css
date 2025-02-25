@@ -1,0 +1,13 @@
+:root {
+  /* Light theme default variables */
+  --light-bg-color: #ffffff;
+  --light-text-color: #121212;
+  --light-primary-color: #6200ee;
+  --light-secondary-color: #03dac6;
+
+  /* Dark theme variables */
+  --dark-bg-color: #121212;
+  --dark-text-color: #ffffff;
+  --dark-primary-color: #bb86fc;
+  --dark-secondary-color: #03dac6;
+}
