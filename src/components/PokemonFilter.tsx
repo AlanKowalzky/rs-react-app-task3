@@ -1,5 +1,6 @@
 // src/components/PokemonFilter/PokemonFilter.tsx
 import React, { useState, useEffect } from 'react';
+import { Pokemon } from '../types/pokemon';
 
 interface PokemonFilterProps {
     search: string;

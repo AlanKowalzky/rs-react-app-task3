@@ -84,6 +84,7 @@ const Dashboard: React.FC = () => {
           <PokemonFilter
             search={search}
             allPokemons={allPokemons}
+            setAllPokemons={setAllPokemons}
             handlePokemonClick={handlePokemonClick}
             handleCheckboxChange={handleCheckboxChange} // Dodane przekazanie funkcji handleCheckboxChange
             selectedItems={selectedItems} // Dodane przekazanie selectedItems
