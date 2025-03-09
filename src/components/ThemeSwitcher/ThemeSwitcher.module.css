@@ -1,0 +1,30 @@
+.themeSwitcher {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--light-button-hover-border);
+  border-radius: 4px;
+  background-color: var(--light-button-bg);
+  color: var(--light-text-color);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+[data-theme='dark'] .button {
+  border-color: var(--dark-button-hover-border);
+  background-color: var(--dark-button-bg);
+  color: var(--dark-text-color);
+}
+
+.button:hover {
+  border-color: var(--light-button-hover-border);
+}
+
+[data-theme='dark'] .button:hover {
+  border-color: var(--dark-button-hover-border);
+}

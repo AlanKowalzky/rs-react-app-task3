@@ -1,6 +1,6 @@
 // src/components/SearchBar/SearchBar.tsx
 import React, { useState } from 'react';
-import './SearchBar.css';
+import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
   onSearch: (value: string) => void;
@@ -22,7 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <div className="search-bar">
+    <div className={styles['search-bar']}>
       <input
         type="text"
         placeholder="Search Pokemon"

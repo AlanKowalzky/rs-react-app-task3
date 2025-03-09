@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { clearItems } from '../../features/selectedItems/selectedItemsSlice';
 import { RootState } from '../../store/store';
 import { ThemeContext } from '../../context/ThemeContext';
-import './Flyout.css';
+import styles from './Flyout.module.css';
 
 const Flyout: React.FC = () => {
   const context = useContext(ThemeContext);
@@ -29,7 +29,7 @@ const Flyout: React.FC = () => {
   if (selectedItems.length === 0) return null;
 
   return (
-    <div className="flyout">
+    <div className={styles.flyout}>
       <p>{selectedItems.length} items selected</p>
       <button onClick={() => dispatch(clearItems())}>Unselect all</button>
       <button onClick={handleDownload}>Download</button>

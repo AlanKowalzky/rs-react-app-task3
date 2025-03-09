@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addItem, removeItem } from '../../features/selectedItems/selectedItemsSlice';
 import { RootState } from '../../store/store';
 import type { Pokemon, PokemonDetails } from '../../types/pokemon';
-import './Dashboard.css';
+import styles from './Dashboard.module.css';
 import SearchBar from '../SearchBar/SearchBar';
 import PokemonFilter from '../PokemonFilter';
 import Pagination from '../Pagination';
@@ -73,11 +73,11 @@ const Dashboard: React.FC = () => {
          }
      };
   return (
-    <div className={`dashboard-container ${theme}`} style={{ position: 'relative' }}>{/* Dodane theme */}
-      <div className="pokemon-list">
+    <div className={`${styles['dashboard-container']} ${theme}`} style={{ position: 'relative' }}>{/* Dodane theme */}
+      <div className={styles['pokemon-list']}>
         <h1>Pokemon Dashboard</h1>
           <button onClick={toggleTheme}>Toggle Theme</button> {/* Dodany przycisk */}
-        <div className="search-container">
+        <div className={styles['search-container']}>
           <SearchBar onSearch={handleSearch} />
         </div>
           {search && <p>Searching for: {search}</p>}
