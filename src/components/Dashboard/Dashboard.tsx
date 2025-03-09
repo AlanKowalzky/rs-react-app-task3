@@ -13,9 +13,9 @@ import PokemonDetailsPanel from '../PokemonDetailsPanel/PokemonDetailsPanel';
 import { useTheme } from '../../context/ThemeContext'; // Dodany import useTheme
 
 const Dashboard: React.FC = () => {
-    const { theme, toggleTheme } = useTheme(); // Pobieramy theme i toggleTheme
-  const [page, setPage] = useState(0);
-  const [search, setSearch] = useState('');
+    const { theme } = useTheme();
+    const [page, setPage] = useState(0);
+    const [search, setSearch] = useState('');
     const [allPokemons, setAllPokemons] = useState<any[]>([]);
     const [filteredPokemons, setFilteredPokemons] = useState<any[]>([]); // Stan przefiltrowanych
     const [displayedPokemons, setDisplayedPokemons] = useState<any[]>([]);
