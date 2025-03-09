@@ -74,10 +74,9 @@ const Dashboard: React.FC = () => {
      };
   return (
     <div className={`${styles['dashboard-container']} ${theme}`} style={{ position: 'relative' }}>{/* Dodane theme */}
-      <div className={styles['pokemon-list']}>
+      <div className={styles['pokemon-list']}>        
         <h1>Pokemon Dashboard</h1>
-          <button onClick={toggleTheme}>Toggle Theme</button> {/* Dodany przycisk */}
-        <div className={styles['search-container']}>
+        <div className={styles['search-container']}>          
           <SearchBar onSearch={handleSearch} />
         </div>
           {search && <p>Searching for: {search}</p>}
