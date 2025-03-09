@@ -1,7 +1,5 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { store } from '../src/store/store';
-import { ThemeProvider } from '../src/context/ThemeContext';
+import Providers from './providers';
 import '../src/index.css';
 import '../src/styles/theme.css';
 
@@ -18,11 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Provider store={store}>
-          <ThemeProvider>
-            {children}
-          </ThemeProvider>
-        </Provider>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

@@ -1,65 +1,79 @@
-// src/components/PokemonFilter/PokemonFilter.tsx
-import React, { useState, useEffect } from 'react';
-import { Pokemon } from '../types/pokemon';
+'use client';
+
+import React, { useEffect } from 'react';
+import type { Pokemon } from '../types/pokemon';
 
 interface PokemonFilterProps {
     search: string;
-    allPokemons: any[];
-    setAllPokemons: (pokemons: any[]) => void;
-    setFilteredPokemons: (pokemons: any[]) => void;
+    allPokemons: Pokemon[];
+    setAllPokemons: (pokemons: Pokemon[]) => void;
     handlePokemonClick: (name: string) => void;
+    handleCheckboxChange: (e: React.MouseEvent, name: string) => void;
     selectedItems: string[];
-    filteredPokemons: any[];
+    filteredPokemons: Pokemon[];
+    setFilteredPokemons: (pokemons: Pokemon[]) => void;
     setPage: (page: number) => void;
     page: number;
     hasMore: boolean;
     isLoading: boolean;
     isError: boolean;
-    displayedPokemons: any[];
-    setDisplayedPokemons: (pokemons: any[]) => void;
+    displayedPokemons: Pokemon[];
+    setDisplayedPokemons: (pokemons: Pokemon[]) => void;
     isFetching: boolean;
-    handleCheckboxChange: (e: React.MouseEvent, name: string) => void;
     offset: number;
     setOffset: (offset: number) => void;
 }
 
-const PokemonFilter: React.FC<PokemonFilterProps> = ({ search, allPokemons, handlePokemonClick, selectedItems, filteredPokemons, setPage, page, hasMore, isLoading, isError, displayedPokemons, setDisplayedPokemons, isFetching, setFilteredPokemons, handleCheckboxChange, offset, setOffset }) => {
-
+const PokemonFilter: React.FC<PokemonFilterProps> = ({
+    search,
+    allPokemons,
+    handlePokemonClick,
+    handleCheckboxChange,
+    selectedItems,
+    filteredPokemons,
+    setFilteredPokemons,
+    page,
+    hasMore,
+    isLoading,
+    isError,
+    displayedPokemons,
+    setDisplayedPokemons,
+    isFetching,
+    offset,
+    setOffset
+}) => {
     useEffect(() => {
-      const filtered = allPokemons.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(search.toLowerCase())
-      );
-      setFilteredPokemons(filtered);
-    }, [search, allPokemons]);
+        if (search) {
+            const filtered = allPokemons.filter(pokemon =>
+                pokemon.name.toLowerCase().includes(search.toLowerCase())
+            );
+            setFilteredPokemons(filtered);
+            setDisplayedPokemons(filtered.slice(page * 10, (page + 1) * 10));
+        } else {
+            setFilteredPokemons([]);
+            setDisplayedPokemons(allPokemons.slice(page * 10, (page + 1) * 10));
+        }
+    }, [search, allPokemons, page]);
 
-    useEffect(() => {
-        const start = page * 10;
-        const end = start + 10;
-        setDisplayedPokemons(filteredPokemons.slice(start, end));
-    }, [page, filteredPokemons]);
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>Error loading Pokemon data</div>;
 
-  return (
-    <>
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>Error fetching data</p>}
-        {displayedPokemons.length === 0 && search && <p>No results found</p>}
-      <ul>
-          {displayedPokemons?.map((pokemon: { name: string; url: string }) => ( // Wyświetlamy filteredPokemons
-              <li
-                  key={pokemon.name}
-                  onClick={() => handlePokemonClick(pokemon.name)}
-              >
-                  <input
-                      type="checkbox"
-                      checked={selectedItems.includes(pokemon.name)}
-                      onChange={(e) => handleCheckboxChange(e as unknown as React.MouseEvent, pokemon.name)}
-                  />
-                 {pokemon.name}
-              </li>
-          ))}
-      </ul>
-    </>
-  );
+    return (
+        <div>
+            {displayedPokemons.map((pokemon: Pokemon) => (
+                <div key={pokemon.name} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <input
+                        type="checkbox"
+                        checked={selectedItems.includes(pokemon.name)}
+                        onChange={(e) => handleCheckboxChange(e as unknown as React.MouseEvent, pokemon.name)}
+                    />
+                    <span onClick={() => handlePokemonClick(pokemon.name)}>
+                        {pokemon.name}
+                    </span>
+                </div>
+            ))}
+        </div>
+    );
 };
 
 export default PokemonFilter;
