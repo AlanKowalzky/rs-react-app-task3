@@ -8,7 +8,7 @@ test('updates search value and triggers search', () => {
   const mockOnSearch = jest.fn();
   render(<SearchBar onSearch={mockOnSearch} />);
 
-  const input = screen.getByPlaceholderText('Search Pokemon') as HTMLInputElement; // Dodana asercja typu
+  const input = screen.getByPlaceholderText('Search Pokemon') as HTMLInputElement; 
   fireEvent.change(input, { target: { value: 'pikachu' } });
 
   const searchButton = screen.getByText('Search');
@@ -20,7 +20,7 @@ test('updates search value and triggers search', () => {
 test('input value change', () => {
     const mockOnSearch = jest.fn();
     render(<SearchBar onSearch={mockOnSearch} />);
-    const input = screen.getByPlaceholderText('Search Pokemon') as HTMLInputElement; // Dodana asercja typu
+    const input = screen.getByPlaceholderText('Search Pokemon') as HTMLInputElement; 
 
     const testString = 'abc';
     for (let i = 0; i < testString.length; i++) {
@@ -43,7 +43,7 @@ test('displays each typed character in the input field', () => {
 
   for (const char of characters) {
     fireEvent.change(input, { target: { value: char } });
-    expect(input.value).toBe(char.toLowerCase()); // Sprawdzamy, czy znak się pojawia i jest maly
+    expect(input.value).toBe(char.toLowerCase()); 
   }
 });
 
@@ -57,5 +57,5 @@ test('clears input field when Search button is pressed', () => {
   const searchButton = screen.getByText('Search');
   fireEvent.click(searchButton);
 
-  expect(input.value).toBe(''); // Sprawdzamy, czy pole input zostało wyczyszczone
+  expect(input.value).toBe(''); 
 });

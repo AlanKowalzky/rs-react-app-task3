@@ -1,4 +1,4 @@
-// src/components/PokemonDetailsPanel/PokemonDetailsPanel.tsx
+
 import React, { useEffect, useRef } from 'react';
 import { useGetPokemonDetailsQuery } from '../../services/apiSlice';
 import { useDispatch, useSelector } from 'react-redux';

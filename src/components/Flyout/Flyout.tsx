@@ -23,7 +23,7 @@ const Flyout: React.FC = () => {
     link.href = url;
     link.download = `${selectedItems.length}_pokemons.csv`;
     link.click();
-    URL.revokeObjectURL(url); // Clean up the URL object after use
+    URL.revokeObjectURL(url); 
   };
 
   if (selectedItems.length === 0) return null;

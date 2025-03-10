@@ -1,4 +1,4 @@
-// src/components/Dashboard/Dashboard.tsx
+
 import React, { useState, useRef, useEffect, ChangeEvent, KeyboardEvent } from 'react';
 import { useGetPokemonsQuery, useGetPokemonDetailsQuery } from '../../services/apiSlice';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,17 +10,17 @@ import SearchBar from '../SearchBar/SearchBar';
 import PokemonFilter from '../PokemonFilter';
 import Pagination from '../Pagination';
 import PokemonDetailsPanel from '../PokemonDetailsPanel/PokemonDetailsPanel';
-import { useTheme } from '../../context/ThemeContext'; // Dodany import useTheme
+import { useTheme } from '../../context/ThemeContext'; 
 
 const Dashboard: React.FC = () => {
     const { theme } = useTheme();
     const [page, setPage] = useState(0);
     const [search, setSearch] = useState('');
     const [allPokemons, setAllPokemons] = useState<any[]>([]);
-    const [filteredPokemons, setFilteredPokemons] = useState<any[]>([]); // Stan przefiltrowanych
+    const [filteredPokemons, setFilteredPokemons] = useState<any[]>([]); 
     const [displayedPokemons, setDisplayedPokemons] = useState<any[]>([]);
     const [hasMore, setHasMore] = useState<boolean>(true);
-    const [offset, setOffset] = useState(0); // Dodany stan offset
+    const [offset, setOffset] = useState(0); 
     const { data, isLoading, isError, isFetching } = useGetPokemonsQuery({
         limit: 10,
         offset: offset,
@@ -30,19 +30,19 @@ const Dashboard: React.FC = () => {
       limit: 10000,
       offset: 0,
       search: ''
-  }); // Pobieramy wszystkie pokemony.
+  }); 
   const selectedItems = useSelector((state: RootState) => state.selectedItems.selectedItems);
   const dispatch = useDispatch();
     const [selectedPokemon, setSelectedPokemon] = useState<string | null>(null);
     useEffect(() => {
         if (allData?.results) {
-            setAllPokemons(allData.results); //Ustawiamy wszystkie dane
+            setAllPokemons(allData.results); 
         }
     }, [allData]);
 
   useEffect(() => {
       if (search === '') {
-          setAllPokemons(allData?.results || []); // Dodane resetowanie do wszystkich danych
+          setAllPokemons(allData?.results || []); 
       }
   }, [search]);
   const handlePokemonClick = (name: string) => {
@@ -73,7 +73,7 @@ const Dashboard: React.FC = () => {
          }
      };
   return (
-    <div className={`${styles['dashboard-container']} ${theme}`} style={{ position: 'relative' }}>{/* Dodane theme */}
+    <div className={`${styles['dashboard-container']} ${theme}`} style={{ position: 'relative' }}>
       <div className={styles['pokemon-list']}>        
         <h1>Pokemon Dashboard</h1>
         <div className={styles['search-container']}>          
@@ -85,8 +85,8 @@ const Dashboard: React.FC = () => {
             allPokemons={allPokemons}
             setAllPokemons={setAllPokemons}
             handlePokemonClick={handlePokemonClick}
-            handleCheckboxChange={handleCheckboxChange} // Dodane przekazanie funkcji handleCheckboxChange
-            selectedItems={selectedItems} // Dodane przekazanie selectedItems
+            handleCheckboxChange={handleCheckboxChange} 
+            selectedItems={selectedItems} 
             filteredPokemons={filteredPokemons}
             setFilteredPokemons={setFilteredPokemons}
             setPage={setPage}
@@ -97,8 +97,8 @@ const Dashboard: React.FC = () => {
             displayedPokemons={displayedPokemons}
             setDisplayedPokemons={setDisplayedPokemons}
             isFetching={isFetching}
-              offset={offset} //Dodano offset
-            setOffset={setOffset} // Dodana funkcja setOffset
+              offset={offset} 
+            setOffset={setOffset} 
         />
           <Pagination
               page={page}

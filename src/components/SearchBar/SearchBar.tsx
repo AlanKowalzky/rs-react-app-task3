@@ -1,4 +1,4 @@
-// src/components/SearchBar/SearchBar.tsx
+
 import React, { useState } from 'react';
 import styles from './SearchBar.module.css';
 
@@ -11,13 +11,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   const handleSearch = () => {
     onSearch(inputValue.toLowerCase());
-    setInputValue(''); // Dodane czyszczenie inputa
+    setInputValue(''); 
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       handleSearch();
-     // setInputValue(''); //Nie ma potrzeby czyszczenia inputa w tej funkcji.
+     
     }
   };
 
@@ -27,8 +27,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         type="text"
         placeholder="Search Pokemon"
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value.toLowerCase())} // Poprawione! Dodane toLowerCase()
-        onKeyDown={handleKeyDown} // Zmienione na onKeyDown
+        onChange={(e) => setInputValue(e.target.value.toLowerCase())} 
+        onKeyDown={handleKeyDown} 
       />
       <button onClick={handleSearch}>Search</button>
     </div>

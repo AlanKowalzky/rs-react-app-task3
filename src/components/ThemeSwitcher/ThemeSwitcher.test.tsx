@@ -1,4 +1,4 @@
-// src/components/ThemeSwitcher/ThemeSwitcher.test.tsx
+
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { ThemeContext } from '../../context/ThemeContext';
