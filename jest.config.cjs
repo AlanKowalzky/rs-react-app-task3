@@ -1,23 +1,17 @@
-/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
+  moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+    '^@/(.*)$': '<rootDir>/src/$1'
+  },
   transform: {
     '^.+\\.(ts|tsx)$': ['ts-jest', {
       tsconfig: 'tsconfig.json',
-      useESM: true
+      jsx: 'react-jsx'
     }],
-    '^.+\\.(js|jsx)$': ['babel-jest', {
-      presets: [
-        ['@babel/preset-env', { targets: { node: 'current' } }],
-        ['@babel/preset-react', { runtime: 'automatic' }]
-      ]
-    }]
+    '^.+\\.(js|jsx)$': ['babel-jest']
   },
-  moduleNameMapper: {
-    '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
-  },
-  setupFilesAfterEnv: ['@testing-library/jest-dom'],
-  extensionsToTreatAsEsm: ['.ts', '.tsx'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
-}
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+  testPathIgnorePatterns: ['/node_modules/', '/cypress/']
+};
