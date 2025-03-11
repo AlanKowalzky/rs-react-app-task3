@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -8,7 +8,6 @@ interface ThemeContextType {
 }
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
@@ -22,6 +21,8 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
+    // Ustaw zarówno klasę jak i atrybut data-theme dla kompatybilności
+    document.body.className = theme;
     document.body.setAttribute('data-theme', theme);
   }, [theme]);
 

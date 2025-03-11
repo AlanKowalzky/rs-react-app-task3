@@ -1,11 +1,8 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import { Provider } from 'react-redux';
-import { store } from '../src/store/store';
 import Dashboard from '../src/components/Dashboard/Dashboard';
 import Flyout from '../src/components/Flyout/Flyout';
 import ThemeSwitcher from '../src/components/ThemeSwitcher/ThemeSwitcher';
-import { ThemeProvider } from '../src/context/ThemeContext';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   // You can fetch initial data here if needed
@@ -16,13 +13,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 const Home = () => {
   return (
-    <Provider store={store}>
-      <ThemeProvider>
-        <ThemeSwitcher />
-        <Dashboard />
-        <Flyout />
-      </ThemeProvider>
-    </Provider>
+    <>
+      <ThemeSwitcher />
+      <Dashboard />
+      <Flyout />
+    </>
   );
 };
 
