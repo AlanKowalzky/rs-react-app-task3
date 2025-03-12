@@ -1,47 +1,78 @@
 .pokemon_details {
-  background-color: var(--background-color);
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: var(--light-bg-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  width: 100%;
+  overflow-y: auto;
+}
+
+:global(body.dark) .pokemon_details,
+:global(body[data-theme='dark']) .pokemon_details {
+  background-color: var(--dark-bg-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .close_button {
   position: absolute;
-  right: 10px;
   top: 10px;
+  right: 10px;
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
-  color: var(--text-color);
-  padding: 5px 10px;
-  border-radius: 4px;
+  color: var(--light-text-color);
 }
 
-.close_button:hover {
-  background-color: var(--hover-background);
+:global(body.dark) .close_button,
+:global(body[data-theme='dark']) .close_button {
+  color: var(--dark-text-color);
+}
+
+.pokemon_name {
+  font-size: 24px;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+  color: var(--light-primary-color);
+}
+
+:global(body.dark) .pokemon_name,
+:global(body[data-theme='dark']) .pokemon_name {
+  color: var(--dark-primary-color);
 }
 
 .pokemon_image {
-  width: 400px;
-  height: 400px;
-  object-fit: contain;
-  margin: 20px auto;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin: 0 auto 20px;
   display: block;
 }
 
-.pokemon_details h2 {
-  text-align: center;
-  color: var(--heading-color);
-  text-transform: capitalize;
-  margin-bottom: 20px;
+.stat_container {
+  margin-bottom: 15px;
 }
 
-.pokemon_details p {
-  margin: 10px 0;
-  padding: 8px;
-  border-radius: 4px;
-  background-color: var(--secondary-background);
+.stat_name {
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+
+.stat_bar {
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.stat_fill {
+  height: 100%;
+  background-color: var(--light-primary-color);
+}
+
+:global(body.dark) .stat_fill,
+:global(body[data-theme='dark']) .stat_fill {
+  background-color: var(--dark-primary-color);
 }

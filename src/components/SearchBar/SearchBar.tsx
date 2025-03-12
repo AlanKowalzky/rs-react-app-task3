@@ -21,16 +21,24 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     }
   };
 
+    
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(e.target.value.toLowerCase());
+    };
+
   return (
-    <div className={styles['search-bar']}>
+    <div className={styles.searchBar}>
       <input
         type="text"
-        placeholder="Search Pokemon"
+        className={styles.input}
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value.toLowerCase())} 
-        onKeyDown={handleKeyDown} 
+        onChange={handleInputChange}
+        // onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Search Pokemon"
       />
-      <button onClick={handleSearch}>Search</button>
+      <button className={styles.button} onClick={handleSearch}>
+        Search
+      </button>
     </div>
   );
 };

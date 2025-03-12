@@ -1,30 +1,42 @@
 .themeSwitcher {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1000;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
 }
 
 .button {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--light-button-hover-border);
-  border-radius: 4px;
-  background-color: var(--light-button-bg);
-  color: var(--light-text-color);
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.25s;
 }
 
-[data-theme='dark'] .button {
-  border-color: var(--dark-button-hover-border);
-  background-color: var(--dark-button-bg);
-  color: var(--dark-text-color);
+:global(body.light) .button,
+:global(body[data-theme='light']) .button {
+  background-color: var(--light-button-bg, #1a1a1a);
+  color: white;
+  border: 1px solid transparent;
 }
 
-.button:hover {
-  border-color: var(--light-button-hover-border);
+:global(body.light) .button:hover,
+:global(body[data-theme='light']) .button:hover {
+  border-color: var(--light-button-hover-border, #646cff);
 }
 
-[data-theme='dark'] .button:hover {
-  border-color: var(--dark-button-hover-border);
+:global(body.dark) .button,
+:global(body[data-theme='dark']) .button {
+  background-color: var(--dark-primary-color, #bb86fc);
+  color: var(--dark-text-color, rgba(255, 255, 255, 0.87));
+  border: none;
+}
+
+:global(body.dark) .button:focus,
+:global(body.dark) .button:focus-visible,
+:global(body[data-theme='dark']) .button:focus,
+:global(body[data-theme='dark']) .button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }
