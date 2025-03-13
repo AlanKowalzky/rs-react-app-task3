@@ -1,144 +1,126 @@
-# React Pokemon Dashboard with Theme Switching
+# Pokemon Dashboard - A React-based Pokemon Explorer with Theme Switching
 
-This project is a React-based dashboard application that displays Pokemon data with theme switching capabilities.
+A modern React application that provides an interactive dashboard for exploring Pokemon data with dynamic theme switching capabilities. Built with TypeScript and Redux Toolkit, it offers a responsive interface with real-time search, filtering, and detailed Pokemon information display.
 
-The application fetches Pokemon data from the PokeAPI and presents it in a user-friendly interface. It features a dashboard that lists Pokemon, allows for item selection, and includes a theme switcher for toggling between light and dark modes. The project is built using modern web technologies including React, Redux Toolkit, and TypeScript, providing a robust and scalable foundation for further development.
-
-Key features of this application include:
-- Pokemon data fetching and display
-- Item selection functionality
-- Theme switching between light and dark modes
-- Responsive design for various screen sizes
-- Integration with PokeAPI for real-time data
-- State management using Redux Toolkit
-- Type-safe development with TypeScript
+This application integrates with the PokeAPI to fetch Pokemon data and provides features like pagination, search functionality, and theme customization. The dashboard supports both light and dark themes, making it comfortable to use in different lighting conditions. Users can select multiple Pokemon, view detailed information about each one, and navigate through the Pokemon list with an intuitive pagination system.
 
 ## Repository Structure
-
-The repository is organized as follows:
-
-- `src/`: Contains the main source code for the application
-  - `components/`: React components including Dashboard, Flyout, and ThemeSwitcher
-  - `context/`: Context providers, including ThemeContext
-  - `features/`: Redux slices and actions for managing application state
-  - `services/`: API service definitions
-  - `store/`: Redux store configuration
-  - `types/`: TypeScript type definitions
-  - `utils/`: Utility functions
-- `cypress/`: Cypress integration tests
-- `public/`: Public assets
-- Configuration files: Various configuration files for TypeScript, ESLint, and Vite
-
-Key Files:
-- `src/main.tsx`: Entry point of the application
-- `src/App.tsx`: Main application component
-- `src/store/store.ts`: Redux store configuration
-- `vite.config.ts`: Vite build tool configuration
+```
+.
+├── src/                          # Source code directory
+│   ├── components/               # React components
+│   │   ├── Dashboard/           # Main dashboard component
+│   │   ├── Flyout/             # Flyout panel component
+│   │   ├── PokemonDetailsPanel/ # Pokemon details display
+│   │   ├── SearchBar/          # Search functionality
+│   │   └── ThemeSwitcher/      # Theme switching component
+│   ├── context/                 # React context definitions
+│   ├── features/                # Redux features and slices
+│   │   ├── apiData/            # API data management
+│   │   ├── selectedItems/      # Selected items management
+│   │   └── theme/              # Theme state management
+│   ├── services/               # API service definitions
+│   └── utils/                  # Utility functions
+├── config files                # Configuration files (ts, babel, etc.)
+└── package.json               # Project dependencies and scripts
+```
 
 ## Usage Instructions
 
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn package manager
+- Modern web browser
+
 ### Installation
-
-Prerequisites:
-- Node.js (version 14 or later)
-- npm (version 6 or later)
-
-To install the project dependencies, run the following command in the project root directory:
-
 ```bash
+# Clone the repository
+git clone <repository-url>
+
+# Install dependencies
 npm install
+
+# Start development server
+npm run dev
 ```
 
-### Getting Started
-
-To start the development server, use the following command:
-
+### Quick Start
+1. Launch the application:
 ```bash
 npm run dev
 ```
 
-This will start the Vite development server, typically at `http://localhost:5173`.
+2. Use the dashboard features:
+```typescript
+// Search for Pokemon
+const searchBar = document.querySelector('input[placeholder="Search Pokemon"]');
+searchBar.value = 'pikachu';
 
-### Building for Production
-
-To create a production build, use:
-
-```bash
-npm run build
+// Toggle theme
+const themeButton = document.querySelector('button');
+themeButton.click(); // Switches between light and dark theme
 ```
 
-This will generate optimized production files in the `dist/` directory.
+### More Detailed Examples
 
-### Running Tests
-
-To run the Cypress integration tests:
-
-```bash
-npm run test
+1. Searching and Filtering Pokemon:
+```typescript
+// Using the SearchBar component
+<SearchBar onSearch={(value) => {
+  // Value will be automatically converted to lowercase
+  console.log(`Searching for: ${value}`);
+}} />
 ```
 
-### Linting
-
-To run the ESLint linter:
-
-```bash
-npm run lint
+2. Theme Management:
+```typescript
+// Using the ThemeContext
+const { theme, toggleTheme } = useTheme();
+// theme will be either 'light' or 'dark'
 ```
-
-### Configuration
-
-The application uses environment variables for configuration. Create a `.env` file in the project root with the following variables:
-
-```
-VITE_API_BASE_URL=https://pokeapi.co/api/v2/
-```
-
-### Common Use Cases
-
-1. Fetching Pokemon Data:
-   The application automatically fetches Pokemon data when the Dashboard component mounts. You can modify the fetch parameters in `src/components/Dashboard/Dashboard.tsx`.
-
-2. Switching Themes:
-   Use the ThemeSwitcher component to toggle between light and dark themes. The theme state is managed by the ThemeContext.
-
-3. Selecting Items:
-   Click on Pokemon items in the Dashboard to select them. Selected items will be displayed in the Flyout component.
 
 ### Troubleshooting
 
-1. API Data Not Loading
-   - Check your internet connection
-   - Verify that the PokeAPI endpoint is correct in `src/services/apiSlice.ts`
-   - Look for any console errors related to CORS issues
+1. API Connection Issues
+- Problem: Pokemon data not loading
+- Solution: 
+```bash
+# Check network connection
+curl https://pokeapi.co/api/v2/pokemon
 
-2. Theme Not Switching
-   - Ensure that the theme CSS files are correctly imported in `src/components/ThemeSwitcher/ThemeSwitcher.tsx`
-   - Check if the ThemeContext is properly set up and provided to the app
+# Enable debug logging
+localStorage.setItem('debug', 'api:*');
+```
 
-3. Redux State Issues
-   - Use Redux DevTools to inspect the state and action dispatches
-   - Verify that the store is correctly configured in `src/store/store.ts`
-
-For debugging, you can enable more verbose logging by setting `NODE_ENV=development` in your environment.
+2. Theme Not Persisting
+- Problem: Theme resets on page refresh
+- Solution: Check local storage permissions
+```javascript
+// Verify local storage access
+console.log(localStorage.getItem('theme'));
+```
 
 ## Data Flow
+The application follows a unidirectional data flow pattern with Redux managing the global state.
 
-The application's data flow follows these steps:
-
-1. The user interacts with the Dashboard component
-2. The Dashboard component dispatches actions to fetch data using the apiSlice
-3. The apiSlice makes HTTP requests to the PokeAPI
-4. Received data is stored in the Redux store
-5. The store updates trigger re-renders of connected components
-6. User interactions (like selecting items) dispatch actions to update the store
-7. The updated store state is reflected in the UI (e.g., selected items shown in the Flyout)
-
-```
-[User] <-> [Dashboard] <-> [Redux Store] <-> [API Slice] <-> [PokeAPI]
-                ^                ^
-                |                |
-                v                v
-           [ThemeSwitcher]   [Flyout]
+```ascii
++-------------+     +-----------+     +----------------+
+|   PokeAPI   | --> |  Redux    | --> |    React      |
+|   Service   |     |  Store    |     |  Components   |
++-------------+     +-----------+     +----------------+
+       ^                 |                    |
+       |                 v                    v
++-------------+     +-----------+     +----------------+
+|   Search    |     |  Theme    |     |    Pokemon    |
+|   Actions   |     | Context   |     |    Details    |
++-------------+     +-----------+     +----------------+
 ```
 
-Note: The ThemeContext operates independently of this data flow, managing theme state separately from the Redux store.# rs-react-app-task3
+Key Component Interactions:
+1. API Service fetches Pokemon data from PokeAPI
+2. Redux store manages Pokemon data and selected items
+3. Theme context handles theme switching across components
+4. SearchBar component triggers API queries
+5. Dashboard component orchestrates data display
+6. PokemonDetailsPanel displays selected Pokemon information
+7. Theme switching propagates through ThemeContext

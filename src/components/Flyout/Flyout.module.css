@@ -1,0 +1,49 @@
+.flyout {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 1rem;
+  border-radius: 8px 0 0 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+body.light .flyout {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  color: #333333;
+}
+
+body.dark .flyout {
+  background-color: #2d2d2d;
+  border: 1px solid #404040;
+  color: #ffffff;
+}
+
+.flyout button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+body.light .flyout button {
+  background-color: #f0f0f0;
+  border: 1px solid #dddddd;
+  color: #333333;
+}
+
+body.light .flyout button:hover {
+  background-color: #e0e0e0;
+}
+
+body.dark .flyout button {
+  background-color: #404040;
+  border: 1px solid #505050;
+  color: #ffffff;
+}
+
+body.dark .flyout button:hover {
+  background-color: #505050;
+}
