@@ -1,4 +1,4 @@
-// src/components/PokemonFilter/PokemonFilter.tsx
+
 import React, { useState, useEffect } from 'react';
 import { Pokemon } from '../types/pokemon';
 
@@ -44,7 +44,7 @@ const PokemonFilter: React.FC<PokemonFilterProps> = ({ search, allPokemons, hand
       {isError && <p>Error fetching data</p>}
         {displayedPokemons.length === 0 && search && <p>No results found</p>}
       <ul>
-          {displayedPokemons?.map((pokemon: { name: string; url: string }) => ( // Wyświetlamy filteredPokemons
+          {displayedPokemons?.map((pokemon: { name: string; url: string }) => ( 
               <li
                   key={pokemon.name}
                   onClick={() => handlePokemonClick(pokemon.name)}

@@ -1,4 +1,4 @@
-// src/services/apiSlice.ts
+
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { PokemonListResponse, PokemonDetails } from '../types/pokemon';
 
@@ -20,5 +20,5 @@ export const apiSlice = createApi({
   }),
 });
 
-// Export the generated hooks
+
 export const { useGetPokemonsQuery, useGetPokemonDetailsQuery } = apiSlice;

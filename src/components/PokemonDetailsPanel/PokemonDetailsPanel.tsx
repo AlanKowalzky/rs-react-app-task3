@@ -1,9 +1,9 @@
-// src/components/PokemonDetailsPanel/PokemonDetailsPanel.tsx
+
 import React, { useEffect, useRef } from 'react';
 import { useGetPokemonDetailsQuery } from '../../services/apiSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import './PokemonDetailsPanel.css';
+import styles from './PokemonDetailsPanel.module.css';
 interface PokemonDetailsPanelProps {
   selectedPokemon: string | null;
     handleCloseDetails: () => void;
@@ -32,7 +32,7 @@ const PokemonDetailsPanel: React.FC<PokemonDetailsPanelProps> = ({ selectedPokem
         <>
         {pokemonDetails && (
             <div
-                className="pokemon-details"
+                className={styles.pokemon_details}
                 ref={detailsRef}
                 style={{
                     position: 'fixed',
@@ -43,7 +43,7 @@ const PokemonDetailsPanel: React.FC<PokemonDetailsPanelProps> = ({ selectedPokem
                     overflowY: 'auto',
                 }}
             >
-                <button className="close-button" onClick={handleCloseDetails}>
+                <button className={styles.close_button} onClick={handleCloseDetails}>
                     &times;
                 </button>
                 <h2>{pokemonDetails.name}</h2>
@@ -53,7 +53,7 @@ const PokemonDetailsPanel: React.FC<PokemonDetailsPanelProps> = ({ selectedPokem
                         pokemonDetails.sprites.front_default
                     }
                     alt={pokemonDetails.name}
-                    className="pokemon-image"
+                    className={styles.pokemon_image}
                 />
                 <p>Height: {pokemonDetails.height / 10} m</p>
                 <p>Weight: {pokemonDetails.weight / 10} kg</p>

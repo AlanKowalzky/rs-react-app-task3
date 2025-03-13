@@ -1,4 +1,4 @@
-// src/types/pokemon.ts
+
 export type Pokemon = {
   name: string;
   url: string;

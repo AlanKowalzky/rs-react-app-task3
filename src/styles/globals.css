@@ -1,0 +1,46 @@
+/* Reset CSS */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Podstawowe zmienne dla motywów */
+  --light-bg-color: #ffffff;
+  --light-text-color: #121212;
+  --light-primary-color: #6200ee;
+  --light-secondary-color: #03dac6;
+  
+  --dark-bg-color: #242424;
+  --dark-text-color: rgba(255, 255, 255, 0.87);
+  --dark-primary-color: #bb86fc;
+  --dark-secondary-color: #03dac6;
+}
+
+/* Podstawowe style dla body */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  line-height: 1.5;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Obsługa motywów */
+body.light,
+body[data-theme='light'] {
+  background-color: var(--light-bg-color);
+  color: var(--light-text-color);
+}
+
+body.dark,
+body[data-theme='dark'] {
+  background-color: var(--dark-bg-color);
+  color: var(--dark-text-color);
+}
+
+/* Podstawowe style dla linków */
+a {
+  color: inherit;
+  text-decoration: none;
+}
