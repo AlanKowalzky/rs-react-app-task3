@@ -1,3 +1,88 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/Flyout/Flyout.module.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+.Flyout_flyout__tuxCz {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 1rem;
+  border-radius: 8px 0 0 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+body.Flyout_light__DZUYx .Flyout_flyout__tuxCz {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  color: #333333;
+}
+
+body.Flyout_dark__lQ02r .Flyout_flyout__tuxCz {
+  background-color: #2d2d2d;
+  border: 1px solid #404040;
+  color: #ffffff;
+}
+
+.Flyout_flyout__tuxCz button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+body.Flyout_light__DZUYx .Flyout_flyout__tuxCz button {
+  background-color: #f0f0f0;
+  border: 1px solid #dddddd;
+  color: #333333;
+}
+
+body.Flyout_light__DZUYx .Flyout_flyout__tuxCz button:hover {
+  background-color: #e0e0e0;
+}
+
+body.Flyout_dark__lQ02r .Flyout_flyout__tuxCz button {
+  background-color: #404040;
+  border: 1px solid #505050;
+  color: #ffffff;
+}
+
+body.Flyout_dark__lQ02r .Flyout_flyout__tuxCz button:hover {
+  background-color: #505050;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/ThemeSwitcher/ThemeSwitcher.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+.ThemeSwitcher_themeSwitcher__G9Nw1 {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.ThemeSwitcher_button__K3ntt {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--light-button-hover-border);
+  border-radius: 4px;
+  background-color: var(--light-button-bg);
+  color: var(--light-text-color);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+[data-theme='dark'] .ThemeSwitcher_button__K3ntt {
+  border-color: var(--dark-button-hover-border);
+  background-color: var(--dark-button-bg);
+  color: var(--dark-text-color);
+}
+
+.ThemeSwitcher_button__K3ntt:hover {
+  border-color: var(--light-button-hover-border);
+}
+
+[data-theme='dark'] .ThemeSwitcher_button__K3ntt:hover {
+  border-color: var(--dark-button-hover-border);
+}
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/Dashboard/Dashboard.module.css ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************/
@@ -183,89 +268,4 @@
   padding: 8px;
   border-radius: 4px;
   background-color: var(--secondary-background);
-}
-/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/Flyout/Flyout.module.css ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************/
-.Flyout_flyout__tuxCz {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  padding: 1rem;
-  border-radius: 8px 0 0 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-body.Flyout_light__DZUYx .Flyout_flyout__tuxCz {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  color: #333333;
-}
-
-body.Flyout_dark__lQ02r .Flyout_flyout__tuxCz {
-  background-color: #2d2d2d;
-  border: 1px solid #404040;
-  color: #ffffff;
-}
-
-.Flyout_flyout__tuxCz button {
-  margin: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-body.Flyout_light__DZUYx .Flyout_flyout__tuxCz button {
-  background-color: #f0f0f0;
-  border: 1px solid #dddddd;
-  color: #333333;
-}
-
-body.Flyout_light__DZUYx .Flyout_flyout__tuxCz button:hover {
-  background-color: #e0e0e0;
-}
-
-body.Flyout_dark__lQ02r .Flyout_flyout__tuxCz button {
-  background-color: #404040;
-  border: 1px solid #505050;
-  color: #ffffff;
-}
-
-body.Flyout_dark__lQ02r .Flyout_flyout__tuxCz button:hover {
-  background-color: #505050;
-}
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/ThemeSwitcher/ThemeSwitcher.module.css ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************/
-.ThemeSwitcher_themeSwitcher__G9Nw1 {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1000;
-}
-
-.ThemeSwitcher_button__K3ntt {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--light-button-hover-border);
-  border-radius: 4px;
-  background-color: var(--light-button-bg);
-  color: var(--light-text-color);
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-[data-theme='dark'] .ThemeSwitcher_button__K3ntt {
-  border-color: var(--dark-button-hover-border);
-  background-color: var(--dark-button-bg);
-  color: var(--dark-text-color);
-}
-
-.ThemeSwitcher_button__K3ntt:hover {
-  border-color: var(--light-button-hover-border);
-}
-
-[data-theme='dark'] .ThemeSwitcher_button__K3ntt:hover {
-  border-color: var(--dark-button-hover-border);
 }

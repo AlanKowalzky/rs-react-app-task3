@@ -1,14 +1,10 @@
 import React from 'react';
-import ThemeSwitcher from '../src/components/ThemeSwitcher/ThemeSwitcher';
-import Dashboard from '../src/components/Dashboard/Dashboard';
-import Flyout from '../src/components/Flyout/Flyout';
+import Router from '../src/router';
 
 export default function Home() {
   return (
     <main>
-      <ThemeSwitcher />
-      <Dashboard />
-      <Flyout />
+      <Router />
     </main>
   );
 }

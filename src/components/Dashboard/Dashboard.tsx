@@ -1,4 +1,4 @@
-'use client';
+
 
 // src/components/Dashboard/Dashboard.tsx
 import React, { useState, useRef, useEffect, ChangeEvent, KeyboardEvent } from 'react';
@@ -11,18 +11,21 @@ import styles from './Dashboard.module.css';
 import SearchBar from '../SearchBar/SearchBar';
 import PokemonFilter from '../PokemonFilter';
 import Pagination from '../Pagination';
-import PokemonDetailsPanel from '../PokemonDetailsPanel/PokemonDetailsPanel';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 
 const Dashboard: React.FC = () => {
     const { theme } = useTheme();
-    const [page, setPage] = useState(0);
+    const navigate = useNavigate();
+    const params = useParams<{ pageNumber: string }>();
+    const pageNumber = params.pageNumber ? parseInt(params.pageNumber, 10) : 1;
+    const [page, setPage] = useState(pageNumber - 1);
     const [search, setSearch] = useState('');
     const [allPokemons, setAllPokemons] = useState<any[]>([]);
     const [filteredPokemons, setFilteredPokemons] = useState<any[]>([]);
     const [displayedPokemons, setDisplayedPokemons] = useState<any[]>([]);
     const [hasMore, setHasMore] = useState<boolean>(true);
-    const [offset, setOffset] = useState(0);
+    const [offset, setOffset] = useState((pageNumber - 1) * 10);
     const { data, isLoading, isError, isFetching } = useGetPokemonsQuery({
         limit: 10,
         offset: offset,
@@ -35,7 +38,19 @@ const Dashboard: React.FC = () => {
     });
     const selectedItems = useSelector((state: RootState) => state.selectedItems.selectedItems);
     const dispatch = useDispatch();
-    const [selectedPokemon, setSelectedPokemon] = useState<string | null>(null);
+
+    // Update URL when page changes
+    useEffect(() => {
+        if (pageNumber !== page + 1) {
+            navigate(`/page/${page + 1}`);
+        }
+    }, [page, navigate, pageNumber]);
+
+    // Sync page state with URL parameter
+    useEffect(() => {
+        setPage(pageNumber - 1);
+        setOffset((pageNumber - 1) * 10);
+    }, [pageNumber]);
 
     useEffect(() => {
         if (allData?.results) {
@@ -50,11 +65,13 @@ const Dashboard: React.FC = () => {
     }, [search]);
 
     const handlePokemonClick = (name: string) => {
-        setSelectedPokemon(name);
-    };
-
-    const handleCloseDetails = () => {
-        setSelectedPokemon(null);
+        // Extract the Pokemon ID from the URL
+        const pokemonUrl = allPokemons.find(p => p.name === name)?.url;
+        if (pokemonUrl) {
+            const urlParts = pokemonUrl.split('/');
+            const pokemonId = urlParts[urlParts.length - 2];
+            navigate(`/pokemon/${pokemonId}`);
+        }
     };
 
     const handleSearch = (value: string) => {
@@ -64,11 +81,15 @@ const Dashboard: React.FC = () => {
     };
 
     const handleNextPage = () => {
-        setPage((prevPage) => prevPage + 1);
+        const nextPage = page + 1;
+        setPage(nextPage);
+        navigate(`/page/${nextPage + 1}`);
     };
 
     const handlePreviousPage = () => {
-        setPage((prevPage) => Math.max(prevPage - 1, 0));
+        const prevPage = Math.max(page - 1, 0);
+        setPage(prevPage);
+        navigate(`/page/${prevPage + 1}`);
     };
 
     const handleCheckboxChange = (e: React.MouseEvent, name: string) => {
@@ -115,12 +136,6 @@ const Dashboard: React.FC = () => {
                     isNextDisabled={displayedPokemons.length < 10 && !hasMore}
                 />
             </div>
-            {selectedPokemon && (
-                <PokemonDetailsPanel
-                    selectedPokemon={selectedPokemon}
-                    handleCloseDetails={handleCloseDetails}
-                />
-            )}
         </div>
     );
 };

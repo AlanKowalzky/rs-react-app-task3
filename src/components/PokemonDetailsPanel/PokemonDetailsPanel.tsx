@@ -1,31 +1,60 @@
 // src/components/PokemonDetailsPanel/PokemonDetailsPanel.tsx
 import React, { useEffect, useRef } from 'react';
-import { useGetPokemonDetailsQuery } from '../../services/apiSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import styles from './PokemonDetailsPanel.module.css';
-interface PokemonDetailsPanelProps {
-  selectedPokemon: string | null;
-    handleCloseDetails: () => void;
+
+// Definiujemy interfejs dla danych z loadera
+interface PokemonLoaderData {
+  pokemon: {
+    name: string;
+    height: number;
+    weight: number;
+    sprites: {
+      front_default: string;
+      other?: {
+        'official-artwork'?: {
+          front_default: string;
+        }
+      }
+    };
+    types: Array<{
+      type: {
+        name: string;
+      }
+    }>;
+    abilities: Array<{
+      ability: {
+        name: string;
+      }
+    }>;
+    base_experience: number;
+  };
 }
 
-const PokemonDetailsPanel: React.FC<PokemonDetailsPanelProps> = ({ selectedPokemon, handleCloseDetails }) => {
-    const { data: pokemonDetails } = useGetPokemonDetailsQuery(selectedPokemon || '', {
-        skip: !selectedPokemon,
-    });
+const PokemonDetailsPanel: React.FC = () => {
+    // Pobieramy dane z loadera zamiast z props
+    const { pokemon: pokemonDetails } = useLoaderData() as PokemonLoaderData;
+    const navigate = useNavigate();
     const detailsRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (detailsRef.current && !detailsRef.current.contains(event.target as Node)) {
-                handleCloseDetails();
-            }
-        };
+    // Funkcja do zamykania panelu - przekierowuje na stronę główną
+    const handleCloseDetails = () => {
+        navigate('/');
+    };
 
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
+    useEffect(() => {
+        if (typeof window !== 'undefined') { // Check if we're in the browser environment
+            const handleClickOutside = (event: MouseEvent) => {
+                if (detailsRef.current && !detailsRef.current.contains(event.target as Node)) {
+                    handleCloseDetails();
+                }
+            };
+
+            document.addEventListener('mousedown', handleClickOutside);
+            return () => {
+                document.removeEventListener('mousedown', handleClickOutside);
+            };
+        }
     }, []);
 
     return (

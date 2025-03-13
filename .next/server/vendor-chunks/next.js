@@ -1619,7 +1619,7 @@ eval("/* eslint-disable import/no-extraneous-dependencies */\n\nObject.definePro
 
 /* __next_internal_client_entry_do_not_use__  cjs */ 
 const { createProxy } = __webpack_require__(/*! next/dist/build/webpack/loaders/next-flight-loader/module-proxy */ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js");
-module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325\\node_modules\\next\\dist\\client\\components\\app-router.js");
+module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325-do-testow\\node_modules\\next\\dist\\client\\components\\app-router.js");
 
 
 /***/ }),
@@ -1632,7 +1632,7 @@ module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325\
 
 /* __next_internal_client_entry_do_not_use__  cjs */ 
 const { createProxy } = __webpack_require__(/*! next/dist/build/webpack/loaders/next-flight-loader/module-proxy */ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js");
-module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325\\node_modules\\next\\dist\\client\\components\\client-page.js");
+module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325-do-testow\\node_modules\\next\\dist\\client\\components\\client-page.js");
 
 
 /***/ }),
@@ -1645,7 +1645,7 @@ module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325\
 
 /* __next_internal_client_entry_do_not_use__  cjs */ 
 const { createProxy } = __webpack_require__(/*! next/dist/build/webpack/loaders/next-flight-loader/module-proxy */ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js");
-module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325\\node_modules\\next\\dist\\client\\components\\error-boundary.js");
+module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325-do-testow\\node_modules\\next\\dist\\client\\components\\error-boundary.js");
 
 
 /***/ }),
@@ -1668,7 +1668,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({\n    value: true\n}));
 
 /* __next_internal_client_entry_do_not_use__  cjs */ 
 const { createProxy } = __webpack_require__(/*! next/dist/build/webpack/loaders/next-flight-loader/module-proxy */ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js");
-module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325\\node_modules\\next\\dist\\client\\components\\layout-router.js");
+module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325-do-testow\\node_modules\\next\\dist\\client\\components\\layout-router.js");
 
 
 /***/ }),
@@ -1681,7 +1681,7 @@ module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325\
 
 /* __next_internal_client_entry_do_not_use__  cjs */ 
 const { createProxy } = __webpack_require__(/*! next/dist/build/webpack/loaders/next-flight-loader/module-proxy */ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js");
-module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325\\node_modules\\next\\dist\\client\\components\\not-found-boundary.js");
+module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325-do-testow\\node_modules\\next\\dist\\client\\components\\not-found-boundary.js");
 
 
 /***/ }),
@@ -1704,7 +1704,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({\n    value: true\n}));
 
 /* __next_internal_client_entry_do_not_use__  cjs */ 
 const { createProxy } = __webpack_require__(/*! next/dist/build/webpack/loaders/next-flight-loader/module-proxy */ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js");
-module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325\\node_modules\\next\\dist\\client\\components\\render-from-template-context.js");
+module.exports = createProxy("C:\\progRSschool2\\rs-react-app-next-clone-090325-do-testow\\node_modules\\next\\dist\\client\\components\\render-from-template-context.js");
 
 
 /***/ }),
